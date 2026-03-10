@@ -10,9 +10,14 @@ const summarizeText = async (text) => {
       throw new Error('GEMINI_API_KEY is not set');
     }
 
-    const response = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey,
-      {
+    const model =
+      process.env.GEMINI_MODEL || 'gemini-1.5-flash-latest';
+    const apiVersion =
+      process.env.GEMINI_API_VERSION || 'v1beta';
+
+    const url = `https://generativelanguage.googleapis.com/${apiVersion}/models/${model}:generateContent?key=${apiKey}`;
+
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
