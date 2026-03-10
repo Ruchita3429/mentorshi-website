@@ -12,10 +12,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ['http://localhost:3000',
-       'http://localhost:3001', 
-      'https://mentorship-platform.vercel.app',
-    ],
+    origin:  true,    
     credentials: true,
   })
 );
